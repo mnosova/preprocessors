@@ -1,0 +1,595 @@
+//nochange
+@import "_prefix";
+@import "_mixin";
+@import "_reset";
+//change
+@import "_fonts";
+@import "_base";
+
+
+
+
+//fluid block
+.test-fluid-bg {
+  @include bg-jpg(test-fluid-bg);
+  @include fluid-bg(1604, 899);
+  > div {
+
+    @include absolute;
+  }
+}
+
+//vertical-middle
+
+.test-vertical-middle {
+  height: 300px;
+  background-color: $dark-gray;
+  @include vertical-middle;
+
+  .inner {
+    @include vertical-middle-inner(16px);
+    width: 130px;
+    padding: 0 10px;
+    background-color: $white;
+
+  }
+
+}
+
+//inlineblock-justify
+
+.test-inline-block-justify {
+  @include inline-block-justify;
+  background-color: $gray;
+
+  .inner {
+    @include inline-block-justify-inner(16px, normal);
+    background-color: $white;
+    padding: 20px 15px;
+    width: 30%;
+    vertical-align: top;
+    text-justify: auto;
+    text-align-last: auto;
+    text-align: left;
+
+  }
+
+}
+
+@media all and (max-width: 600px) {
+  .test-inline-block-justify {
+
+    .inner {
+
+      width: 40%;
+
+    }
+
+  }
+
+}
+
+//table-cell
+.test-table-cell {
+  padding: 20px 30px;
+  @include table-cell;
+  background-color: $white;
+  .wrap {
+    background-color: $light-gray;
+    @include table-cell-inner();
+    padding: 10px;
+    width: 50%;
+
+  }
+  .inner {
+    @include table-cell-inner();
+    background-color: $dark-gray;
+    padding: 20px;
+    width: 25%;
+
+  }
+
+}
+
+@media all and (max-width: 600px) {
+  .test-table-cell {
+    .wrap {
+      display: table;
+      width: 100%;
+
+    }
+    .inner {
+
+      width: 50%;
+
+    }
+  }
+
+}
+
+//center-translate
+.test-center-translate {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: $light-gray;
+
+  .inner {
+    @include center-translate;
+    padding: 50px;
+    background-color: $gray;
+  }
+
+}
+
+.test-center-margin {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .wrap {
+    @include fluid-img(300);
+  }
+  .inner {
+    @include fluid-img-wrap(600px, 300px);
+    border: 1px solid;
+    padding: 30px;
+
+    span {
+      width: 100px;
+      height: 63px;
+      position: absolute;
+      right: -45px;
+      top: 140px;
+      background-color: $light-gray;
+
+    }
+
+  }
+  img {
+    @include center-margin(1200px, 300px);
+  }
+}
+
+//absolute
+
+.test-absolute-link {
+  position: relative;
+  height: 300px;
+  text-align: center;
+  line-height: 300px;
+
+  div {
+
+    background-color: $gray;
+  }
+  a {
+    @include absolute;
+  }
+}
+
+//prefix
+
+.test-prefix {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $light-gray;
+
+  .inner-1 {
+    @include text-overflow(nowrap);
+
+  }
+  .inner-2 {
+    @include font-smoothing();
+
+  }
+  .inner-3 {
+    @include unselect;
+
+  }
+}
+
+.test-prefix-1 {
+  @include border-radius(5px);
+  @include box-shadow(0px 0px 60px -10px rgba(0, 0, 0, 0.75));
+  @include transition(all .3s ease-in);
+  @include transition-delay(.4s);
+  @include box-sizing();
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  color: $white;
+  padding: 20px;
+  @include bg-jpg(test-prefix);
+  background-color: $black;
+  @include bg-size(40% 50%);
+
+  &:hover {
+    width: 200px;
+
+  }
+
+}
+
+.test-prefix-2 {
+
+  @include text-shadow(3px 0px 1px rgba(255, 0, 0, 0.75));
+  min-height: 300px;
+  color: $white;
+  margin: 0 auto;
+  padding: 40px;
+  position: relative;
+  background-color: $light-gray;
+  &:before {
+    @include pseudo(100px, 100px, 50px, 30px, block);
+    background-color: $white;
+    @include opacity(0.8);
+    @include rotate(45);
+  }
+  .inner {
+    @include bg-jpg(test-prefix);
+    background-color: $light-gray;
+    padding: 50px;
+    margin: 50px;
+    border: 10px dashed $gray;
+    @include bg-clip(border-box);
+    &:hover {
+      @include scale(0.95);
+
+    }
+  }
+}
+
+.test-td-dot {
+  width: 300px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  @include property-table($light-gray);
+  p {
+    @include property-row;
+    &.property:before {
+      @include property-line(4px);
+      border-bottom: 2px dotted $dark-gray;
+    }
+    span {
+      @include property-name($light-gray);
+      padding-right: 2px;
+
+    }
+    b {
+      @include property-val($light-gray);
+      padding-left: 3px;
+
+    }
+  }
+
+}
+
+.test-no-number-list {
+
+  background-color: $light-gray;
+  width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  ul {
+
+    li {
+      @include no-number-list-item(20px);
+      &:before {
+        @include pseudo(5px, 0, 10px, 10px, block);
+        @include no-number-list-dot($white);
+        border: 2px solid $dark-red;
+
+      }
+
+    }
+  }
+
+}
+
+.test-number-list {
+
+  background-color: $gray;
+  width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  ol {
+    @include number-list(li);
+    li {
+      @include number-list-item(20px);
+      &:before {
+        @include number-list-num(li, ')');
+        font-weight: bold;
+        color: $dark-red;
+
+      }
+    }
+  }
+
+}
+
+.test-sprite {
+  margin: 0 auto;
+  width: 200px;
+  background-color: $white;
+  padding: 60px 20px;
+  span {
+    cursor: pointer;
+    background-image: url("#{$url-img}test-sprite.png")
+
+  }
+
+}
+
+.icon-f {
+
+  @include sprite(27px, 27px, 1, 1);
+
+  &:hover {
+    @include sprite(27px, 27px, 0, 1);
+
+  }
+}
+
+.icon-g {
+
+  @include sprite(27px, 27px, 1, 2);
+  &:hover {
+    @include sprite(27px, 27px, 0, 2);
+
+  }
+
+}
+
+.icon-i {
+  @include sprite(27px, 27px, 1, 3);
+  &:hover {
+    @include sprite(27px, 27px, 0, 3);
+
+  }
+}
+
+.icon-o {
+  @include sprite(27px, 27px, 1, 4);
+  &:hover {
+    @include sprite(27px, 27px, 0, 4);
+
+  }
+}
+
+.icon-s {
+  @include sprite(27px, 27px, 1, 5);
+  &:hover {
+    @include sprite(27px, 27px, 0, 5);
+
+  }
+}
+
+.test-triangle {
+  background-color: $dark-gray;
+  width: 300px;
+  margin: 0 auto;
+  height: 300px;
+  position: relative;
+  .close-icon {
+
+    @include close-icon(10, 20, $dark-red, $dark-gray);
+    top: 0;
+    right: 10px;
+  }
+  .top {
+    @include triangle(20, 20, $dark-red, t);
+    top: 20px;
+    left: 0;
+  }
+
+  .right {
+    @include triangle(20, 20, $dark-red, r);
+    top: 40px;
+    left: 0;
+  }
+
+  .bottom {
+    @include triangle(20, 20, $dark-red, b);
+    top: 60px;
+    left: 0;
+  }
+
+  .left {
+    @include triangle(20, 20, $dark-red, l);
+    top: 80px;
+    left: 0;
+  }
+
+  .top-left {
+    @include triangle(20, 20, $dark-red, tl);
+    top: 100px;
+    left: 0;
+  }
+
+  .top-right {
+    @include triangle(20, 20, $dark-red, tr);
+    top: 120px;
+    left: 0;
+  }
+
+  .bottom-right {
+    @include triangle(20, 20, $dark-red, br);
+    top: 140px;
+    left: 0;
+  }
+
+  .bottom-left {
+    @include triangle(20, 20, $dark-red, bl);
+    top: 160px;
+    left: 0;
+  }
+
+}
+
+.test-arrow {
+
+  background-color: $gray;
+  width: 300px;
+  margin: 0 auto;
+  height: 300px;
+  position: relative;
+  &:before {
+
+    @include triangle(30, 30, $dark-red, r);
+    top: 30px;
+    left: 100%;
+  }
+  &:after {
+    @include triangle(30, 30, $gray, r);
+    top: 30px;
+    left: 99%;
+
+  }
+
+  .top {
+
+    position: relative;
+    &:before {
+      @include triangle(20, 20, $dark-red, t);
+      top: 19px;
+      left: 0;
+    }
+
+    &:after {
+      @include triangle(20, 20, $gray, t);
+      top: 20px;
+      left: 0;
+
+    }
+  }
+
+  .right {
+
+    position: relative;
+    &:before {
+      @include triangle(20, 20, $dark-red, r);
+      top: 40px;
+      left: 0;
+
+    }
+
+    &:after {
+      @include triangle(20, 20, $gray, r);
+      top: 40px;
+      left: -1px;
+    }
+
+  }
+
+  .bottom {
+    position: relative;
+    &:before {
+      top: 60px;
+      left: 0;
+      @include triangle(20, 20, $dark-red, b);
+
+    }
+
+    &:after {
+      top: 59px;
+      left: 0;
+      @include triangle(20, 20, $gray, b);
+
+    }
+
+  }
+
+  .left {
+    position: relative;
+    &:before {
+      top: 80px;
+      left: -1px;
+      @include triangle(20, 20, $dark-red, l);
+
+    }
+
+    &:after {
+      top: 80px;
+      left: 0;
+      @include triangle(20, 20, $gray, l);
+
+    }
+
+  }
+
+  .top-left {
+    position: relative;
+    &:before {
+      top: 99px;
+      left: 0;
+      @include triangle(20, 20, $dark-red, tl);
+
+    }
+
+    &:after {
+      top: 100px;
+      left: 1px;
+      @include triangle(20, 20, $gray, tl);
+
+    }
+
+  }
+
+  .top-right {
+    position: relative;
+    &:before {
+      top: 119px;
+      left: 0;
+      @include triangle(20, 20, $dark-red, tr);
+
+    }
+
+    &:after {
+      top: 120px;
+      left: -1px;
+      @include triangle(20, 20, $gray, tr);
+
+    }
+
+  }
+
+  .bottom-right {
+    position: relative;
+    &:before {
+      top: 140px;
+      left: 1px;
+      @include triangle(20, 20, $dark-red, br);
+
+    }
+
+    &:after {
+      top: 139px;
+      left: 0;
+      @include triangle(20, 20, $gray, br);
+
+    }
+
+  }
+
+  .bottom-left {
+    position: relative;
+    &:before {
+      top: 160px;
+      left: 0;
+      @include triangle(20, 20, $dark-red, bl);
+
+    }
+
+    &:after {
+      top: 159px;
+      left: 1px;
+      @include triangle(20, 20, $gray, bl);
+
+    }
+
+  }
+
+}
+
