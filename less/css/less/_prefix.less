@@ -1,0 +1,123 @@
+.box-sizing(@border-box: border-box) {
+    -moz-box-sizing: @border-box;
+    -webkit-box-sizing: @border-box;
+    box-sizing: @border-box;
+
+}
+
+.border-radius(@radius) {
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    border-radius: @radius;
+
+}
+
+.bg-size(@size) {
+    -moz-background-size: @size;
+    -webkit-background-size: @size;
+    -o-background-size: @size;
+    background-size: @size;
+
+}
+
+.box-shadow(@string) {
+    -moz-box-shadow: @string;
+    -webkit-box-shadow: @string;
+    -o-box-shadow: @string;
+    box-shadow: @string;
+
+}
+
+.font-smoothing(@val: antialiased) {
+    -moz-font-smoothing: @val;
+    -webkit-font-smoothing: @val;
+    -o-font-smoothing: @val;
+    -ms-font-smoothing: @val;
+    font-smoothing: @val;
+
+}
+
+.unselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+.bg-clip(@bg-clip) {
+    -moz-background-clip: @bg-clip;
+    -webkit-background-clip: @bg-clip;
+    background-clip: @bg-clip;
+
+}
+
+.text-shadow(@string) {
+    -moz-text-shadow: @string;
+    -webkit-text-shadow: @string;
+    -o-text-shadow: @string;
+    text-shadow: @string;
+
+}
+
+//one line text
+.text-overflow(@wspace) {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: @wspace;
+
+}
+
+.transition(@transition) {
+    -moz-transition: @transition;
+    -webkit-transition: @transition;
+    -o-transition: @transition;
+    -ms-transition: @transition;
+    transition: @transition;
+
+}
+
+.transition-delay(@delay) {
+    -moz-transition-delay: @delay;
+    -webkit-transition-delay: @delay;
+    -o-transition-delay: @delay;
+    -ms-transition-delay: @delay;
+    transition-delay: @delay;
+}
+
+.scale(@num) {
+    -moz-transform: scale(@num);
+    -webkit-transform: scale(@num);
+    -o-transform: scale(@num);
+    -ms-transform: scale(@num);
+    transform: scale(@num);
+
+}
+
+.rotate(@num) {
+    -moz-transform: rotate(@num);
+    -webkit-transform: rotate(@num);
+    -o-transform: rotate(@num);
+    -ms-transform: rotate(@num);
+    transform: rotate(@num);
+
+}
+
+.opacity(@opacity) {
+
+    -moz-opacity: @opacity;
+    -khtml-opacity: @opacity;
+    opacity: @opacity;
+    @ieOpacity: @opacity * 100;
+    filter: ~"alpha(opacity=@{ieOpacity})";
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{ieOpacity})";
+
+}
