@@ -1,0 +1,63 @@
+//CONTAINER
+@width-container: 1203px;
+
+//FONT-SIZE
+@fz-lg: 16px;
+
+//COLOR
+@black: #000;
+@white: #fff;
+@light-gray: #f4f4f4;
+@gray: #ddd;
+@dark-gray: #ccc;
+@dark-red: #990000;
+
+//FONTS
+@lora-reg: 'loraregular';
+
+
+//URLS
+@url-font: "../fonts/";
+@url-img: "../img/";
+
+//LINKS
+a {
+    color: @black;
+    &:visited {
+        color: @dark-red;
+    }
+    &:hover {
+        color: @dark-gray;
+        text-decoration: none;
+
+    }
+    &:active {
+        color: @light-gray;
+
+    }
+}
+
+//BUTTONS
+.btn {
+    display: block;
+    text-align: center;
+    width: 180px;
+    height: 45px;
+    padding: 12px 10px;
+    font-family: @lora-reg;
+    background-color: @dark-red;
+    cursor: default;
+    color:@white;
+.border-radius(6px)
+}
+
+//TEXT
+
+p {
+
+    font-size: @fz-lg;
+    line-height: 1.4;
+    margin: 0 0 15px;
+}
+
+
