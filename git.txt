@@ -55,3 +55,6 @@ git merge имя ()
 конфликт до ==ветка основная
 после === в ветке имя
 стереть данные о конфликте
+п
+в случае ошибки fatal: refusing to merge unrelated histories
+git pull origin branchname --allow-unrelated-histories
