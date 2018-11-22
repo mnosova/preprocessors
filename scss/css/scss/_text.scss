@@ -19,11 +19,35 @@ $lora-reg: 'loraregular';
 $url-font: "../fonts/";
 $url-img: "../img/";
 
+
+//font size settings
+
+
+html, body {
+  line-height: 1.44em;
+  font-size: 16px;
+}
+
+@include screen-md {
+  html, body {
+
+    font-size: 14px !important;
+  }
+}
+
+@include screen-sm {
+  html, body {
+    font-size: 12px !important;
+  }
+}
+
+
 //LINKS
 a {
   color: $black;
+  cursor: pointer;
   &:visited {
-    color: $dark-red;
+    //color: $gray;
   }
   &:hover {
     color: $dark-gray;
@@ -36,7 +60,6 @@ a {
   }
 }
 
-
 //TEXT
 
 p {
@@ -46,4 +69,7 @@ p {
   margin: 0 0 15px;
 }
 
-
+//usage class
+.center-text {
+  text-align: center;
+}

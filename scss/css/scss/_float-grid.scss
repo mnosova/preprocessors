@@ -1,15 +1,16 @@
 //float grid
-//flex grid
 
 //====CUSTOMIZE=====//
 
 //grid
 $columns: 12;
-$gutter: 15;
+$gutter: 0.9375;
+$gutter-unit: rem;
+
 
 //media only screen point
-$screen-lg: 1200px;
-$screen-md: 1024px;
+$screen-lg: 1300px;
+$screen-md: 1120px;
 $screen-sm: 960px;
 $screen-xs: 768px;
 
@@ -132,12 +133,12 @@ div[class*="col-"] {
 }
 
 .row-with-gutter {
-  margin-left: - $gutter + px;
-  margin-right: - $gutter + px;
+  margin-left: - $gutter + $gutter-unit;
+  margin-right: - $gutter + $gutter-unit;
   @include clearfix;
   div[class*="col-"] {
-    padding-left: $gutter + px;
-    padding-right: $gutter + px;
+    padding-left: $gutter + $gutter-unit;
+    padding-right: $gutter + $gutter-unit;
 
   }
 }

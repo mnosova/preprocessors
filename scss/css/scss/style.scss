@@ -3,14 +3,14 @@
 @import "mixin";
 @import "reset";
 //change
+@import "float-grid";
 @import "fonts";
-@import "base";
+@import "text";
 @import "forms";
-@import "media-grid";
 
 
 //introduction
-.navigation{
+.navigation {
   text-align: center;
   margin-top: 50px;
 }
@@ -623,19 +623,70 @@
   @include btn;
 }
 
-
-
 //testing-float-grid
-.testing-float-grid{
-.container{
-  background: $light-gray;
-  .row{
-    background: $dark-gray;
-    div{
+.testing-float-grid {
+  .container {
+    background: $light-gray;
+    .row {
+      background: $dark-gray;
+      div {
 
-    background: $white ;
+        background: $white;
+      }
+    }
+  }
+
+}
+
+//testing units
+.testing-units {
+  margin-top: 50px;
+}
+
+.unit-btn {
+  @include btn;
+
+  &.big {
+    font-size: 2em;
+
+  }
+  &.medium {
+    font-size: 1.2em;
+
+  }
+  &.small {
+    font-size: .8em;
+
+  }
+}
+
+.unit-item {
+
+    font-size:16px;
+    padding: 0 0 1.6em;
+    background: $light-gray;
+    border: 1px solid $dark-gray;
+    margin-bottom: 2rem;
+    h1 {
+      padding: .5em 1.5rem;
+      background: $white;
+      font-size: 2em;
+
+    }
+
+    p {
+      margin-top: 1em;
+      padding: 0 1.5rem;
+      font-size: 1em;
+    }
+  &.small {
+    h1 {
+      font-size: 1em;
+    }
+    p {
+      font-size: 0.875em;
     }
   }
 }
 
-}
+
