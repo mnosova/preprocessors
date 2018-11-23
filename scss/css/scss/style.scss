@@ -4,10 +4,10 @@
 @import "reset";
 //change
 @import "float-grid";
-@import "fonts";
 @import "text";
+@import "flex-grid";
+@import "fonts";
 @import "forms";
-
 
 //introduction
 .navigation {
@@ -662,23 +662,23 @@
 
 .unit-item {
 
-    font-size:16px;
-    padding: 0 0 1.6em;
-    background: $light-gray;
-    border: 1px solid $dark-gray;
-    margin-bottom: 2rem;
-    h1 {
-      padding: .5em 1.5rem;
-      background: $white;
-      font-size: 2em;
+  font-size: 16px;
+  padding: 0 0 1.6em;
+  background: $light-gray;
+  border: 1px solid $dark-gray;
+  margin-bottom: 2rem;
+  h1 {
+    padding: .5em 1.5rem;
+    background: $white;
+    font-size: 2em;
 
-    }
+  }
 
-    p {
-      margin-top: 1em;
-      padding: 0 1.5rem;
-      font-size: 1em;
-    }
+  p {
+    margin-top: 1em;
+    padding: 0 1.5rem;
+    font-size: 1em;
+  }
   &.small {
     h1 {
       font-size: 1em;
@@ -688,5 +688,22 @@
     }
   }
 }
+
+//testing-flex-grid
+
+.flex-row {
+  background: $gray;
+}
+
+.testing-flex-grid {
+  .unit-item {
+    @include flex-inner;
+    > div {
+      margin: auto auto 10px auto;
+    }
+
+  }
+}
+
 
 

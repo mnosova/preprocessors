@@ -1,0 +1,131 @@
+//flex grid
+
+//====CUSTOMIZE=====//
+
+//grid
+$columns: 12;
+$gutter: 0.9375;
+$gutter-unit: rem;
+
+//media only screen point
+$screen-lg: 1300px;
+$screen-md: 1120px;
+$screen-sm: 960px;
+$screen-xs: 768px;
+
+//flex settings
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+
+}
+
+@mixin flex($grow, $shrink, $basis  ) {
+  $flex-width: calc(#{$basis} - (#{$gutter}#{$gutter-unit}));;
+  flex-grow: $grow;
+  flex-shrink: $shrink;
+  flex-basis: $flex-width;
+  @content;
+}
+
+@mixin flex-inner {
+  display: flex;
+  flex-direction: column;
+  @content;
+}
+
+.flex-row-around {
+  justify-content: space-around;
+
+}
+
+.flex-row-between {
+  justify-content: space-between;
+
+}
+
+@include screen-lg {
+
+  .flex-row-lg-around {
+    justify-content: space-around;
+
+  }
+  .flex-row-lg-between {
+    justify-content: space-between;
+
+  }
+  @for $i from 1 through $columns {
+    .flex-lg-#{$i} {
+      $flexW:((100 / $columns) * $i) * 1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: calc(#{$flexW} - #{$gutter}#{$gutter-unit});;
+
+    }
+  }
+}
+
+@include screen-md {
+
+  .flex-row-md-around {
+    justify-content: space-around;
+
+  }
+  .flex-row-md-between {
+    justify-content: space-between;
+
+  }
+  @for $i from 1 through $columns {
+    .flex-md-#{$i} {
+      $flexW:((100 / $columns) * $i) * 1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: calc(#{$flexW} - #{$gutter}#{$gutter-unit});;
+
+    }
+  }
+}
+
+@include screen-sm {
+
+  .flex-row-sm-around {
+    justify-content: space-around;
+
+  }
+  .flex-sm-between {
+    justify-content: space-between;
+
+  }
+  @for $i from 1 through $columns {
+    .flex-sm-#{$i} {
+      $flexW:((100 / $columns) * $i) * 1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: calc(#{$flexW} - #{$gutter}#{$gutter-unit});;
+
+    }
+  }
+}
+
+@include screen-xs {
+
+  .flex-row-xs-around {
+    justify-content: space-around;
+
+  }
+  .flex-xs-between {
+    justify-content: space-between;
+
+  }
+  @for $i from 1 through $columns {
+    .flex-xs-#{$i} {
+      $flexW:((100 / $columns) * $i) * 1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: calc(#{$flexW} - #{$gutter}#{$gutter-unit});;
+
+    }
+  }
+}
