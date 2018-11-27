@@ -627,11 +627,15 @@
 .testing-float-grid {
   .container {
     background: $light-gray;
-    .row {
+    .row, .row-with-gutter {
       background: $dark-gray;
       div {
 
         background: $white;
+        div{
+
+          background: $gray;
+        }
       }
     }
   }
@@ -690,12 +694,11 @@
 }
 
 //testing-flex-grid
-
-.flex-row {
-  background: $gray;
-}
-
 .testing-flex-grid {
+  .flex-row {
+    background: $gray;
+  }
+
   .unit-item {
     @include flex-inner;
     > div {
@@ -704,6 +707,58 @@
 
   }
 }
+
+//testing-flex-grid2
+.testing-flex-grid2 {
+
+  .container{
+    //overflow: hidden;
+  }
+  .flex-row {
+    background: $gray;
+    overflow: hidden;
+  }
+  .flex-item {
+    background: $light-gray;
+    border: 1px solid $dark-gray;
+    margin-bottom: 2rem;
+
+  }
+  .unit-item2 {
+    font-size: 16px;
+    padding: 0 0 1.6em;
+
+    h1 {
+      padding: .5em 1.5rem;
+      background: $white;
+      font-size: 2em;
+
+    }
+
+    p {
+      margin-top: 1em;
+      padding: 0 1.5rem;
+      font-size: 1em;
+    }
+    &.small {
+      h1 {
+        font-size: 1em;
+      }
+      p {
+        font-size: 0.875em;
+      }
+    }
+    @include flex-inner;
+    > div {
+      margin: auto auto 10px auto;
+    }
+
+  }
+
+
+}
+
+
 
 
 

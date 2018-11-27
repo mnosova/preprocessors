@@ -4,180 +4,266 @@
 
 //grid
 $columns: 12;
-$gutter: 0.9375;
-$gutter-unit: rem;
-
+$gutter: 0.9375rem;
+$gutter-init: 0;
 
 //media only screen point
-$screen-lg: 1300px;
-$screen-md: 1120px;
-$screen-sm: 960px;
-$screen-xs: 768px;
+$lg: 1200px;
+$md: 992px;
+$sm: 768px;
+$xs: 576px;
 
 //media mixin
 
 @mixin retina {
-  @media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (min-resolution: 120dpi),
-  only screen and (min-resolution: 1.2dppx) {
+  @media all and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 120dpi),
+  (min-resolution: 1.2dppx) {
     @content;
   }
 
 }
 
-@mixin screen-lg {
-  @media only screen and (max-width: $screen-lg) {
+@mixin lg {
+  @media all and (max-width: $lg) {
     @content;
   }
 
 }
 
-@mixin screen-sm {
-  @media only screen and (max-width: $screen-sm) {
+@mixin sm {
+  @media all and (max-width: $sm) {
     @content;
   }
 
 }
 
-@mixin screen-md {
-  @media only screen and (max-width: $screen-md) {
+@mixin md {
+  @media all and (max-width: $md) {
     @content;
   }
 
 }
 
-@mixin screen-xs {
-  @media only screen and (max-width: $screen-xs) {
+@mixin xs {
+  @media all and (max-width: $xs) {
     @content;
   }
 
 }
 
 @mixin lg-to-md {
-  @media only screen and (max-width: $screen-lg) and(min-width: $screen-md) {
+  @media all and (max-width: $lg) and(min-width: $md) {
     @content;
   }
 
 }
 
 @mixin md-to-sm {
-  @media only screen and (max-width: $screen-md) and(min-width: $screen-sm) {
+  @media all and (max-width: $md) and(min-width: $sm) {
     @content;
   }
 
 }
 
 @mixin sm-to-xs {
-  @media only screen and (max-width: $screen-sm) and(min-width: $screen-xs) {
+  @media all and (max-width: $sm) and(min-width: $xs) {
     @content;
   }
 
 }
 
-//container-size
-$container-width: 1170;
-$container-lg: 1024;
-$container-md: 960;
-$container-sm: 718;
-
+//container-max-width
+$c-lg: 1140;
+$c-md: 960;
+$c-sm: 720;
+$c-xs: 540;
 
 //container always container
 .container {
+  max-width: $c-lg +px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 0;
   padding-right: 0;
-  max-width: $container-width + px;
   @include clearfix;
 
 }
 
-@include screen-lg {
+@include lg {
   .container {
-    max-width: $container-lg + px;
+    max-width: $c-md + px;
   }
 
 }
 
-@include screen-sm {
+@include md {
   .container {
-    max-width: $container-md + px;
-  }
-}
-
-@include screen-md {
-  .container {
-    max-width: $container-sm + px;
+    max-width: $c-sm + px;
   }
 
 }
 
-@include screen-xs {
+@include sm {
+  .container {
+    max-width: $c-xs + px;
+  }
+}
+
+@include xs {
   .container {
     max-width: 90%;
   }
 }
 
-
-//block_row means classic .row
+//float grid
 .row {
   @include clearfix;
 }
 
-div[class*="col-"] {
+div[class^="col-"] {
   position: relative;
   min-height: 1px;
   float: left;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: $gutter-init;
+  padding-right: $gutter-init;
 }
 
 .row-with-gutter {
-  margin-left: - $gutter + $gutter-unit;
-  margin-right: - $gutter + $gutter-unit;
+  margin-left: - $gutter;
+  margin-right: - $gutter;
   @include clearfix;
   div[class*="col-"] {
-    padding-left: $gutter + $gutter-unit;
-    padding-right: $gutter + $gutter-unit;
+    padding-left: $gutter;
+    padding-right: $gutter;
+
+  }
+}
+
+//media for columns
+@for $i from 1 through $columns {
+  //column
+  .col-#{$i} {
+    width: ((100 / $columns) * $i) * 1%
+
+  }
+}
+
+@for $i from 1 through $columns {
+  //offset
+  .col-offset-#{$i} {
+    margin-left: ((100 / $columns) * $i) * 1%
+
+  }
+
+}
+
+//order
+@for $i from 1 through $columns {
+
+  .col-pull-#{$i} {
+    right: ((100 / $columns) * $i) * 1%
 
   }
 }
 
 @for $i from 1 through $columns {
 
-  .col-lg-#{$i} {
-    width: ((100 / $columns) * $i) * 1%
-
-  }
-  .col-lg-offset-#{$i} {
-    margin-left: ((100 / $columns) * $i) * 1%
-
-  }
-  .col-lg-pull-#{$i} {
-      right: ((100 / $columns) * $i) * 1%
-
-    }
-  .col-lg-push-#{$i} {
+  .col-push-#{$i} {
     left: ((100 / $columns) * $i) * 1%
 
   }
 }
-@include md-to-sm {
 
+//large screen
+
+@include lg {
+  //column
+  @for $i from 1 through $columns {
+
+    .col-lg-#{$i} {
+      width: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+}
+
+@include lg-to-md {
+  //offset
+  @for $i from 1 through $columns {
+
+    .col-lg-offset-#{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
+//order
+@include lg-to-md {
+  @for $i from 1 through $columns {
+
+    .col-lg-pull-#{$i} {
+      right: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
+@include lg-to-md {
+  @for $i from 1 through $columns {
+
+    .col-lg-push-#{$i} {
+      left: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+}
+
+//medium screen
+@include md {
+  //column
   @for $i from 1 through $columns {
 
     .col-md-#{$i} {
       width: ((100 / $columns) * $i) * 1%
 
     }
+
+  }
+}
+
+@include md-to-sm {
+  //offset
+  @for $i from 1 through $columns {
+
     .col-md-offset-#{$i} {
       margin-left: ((100 / $columns) * $i) * 1%
 
     }
+
+  }
+}
+
+//order
+@include md-to-sm {
+
+  @for $i from 1 through $columns {
+
     .col-md-pull-#{$i} {
       right: ((100 / $columns) * $i) * 1%
 
     }
+
+  }
+}
+
+@include md-to-sm {
+
+  @for $i from 1 through $columns {
+
     .col-md-push-#{$i} {
       left: ((100 / $columns) * $i) * 1%
 
@@ -185,21 +271,49 @@ div[class*="col-"] {
   }
 }
 
-@include sm-to-xs {
+//small screen
+@include sm {
+  //column
   @for $i from 1 through $columns {
 
     .col-sm-#{$i} {
       width: ((100 / $columns) * $i) * 1%
 
     }
+
+  }
+
+}
+
+//offset
+@include sm-to-xs {
+  @for $i from 1 through $columns {
+
     .col-sm-offset-#{$i} {
       margin-left: ((100 / $columns) * $i) * 1%
 
     }
+
+  }
+
+}
+
+//order
+@include sm-to-xs {
+  @for $i from 1 through $columns {
+
     .col-sm-pull-#{$i} {
       right: ((100 / $columns) * $i) * 1%
 
     }
+
+  }
+
+}
+
+@include sm-to-xs {
+  @for $i from 1 through $columns {
+
     .col-sm-push-#{$i} {
       left: ((100 / $columns) * $i) * 1%
 
@@ -208,11 +322,9 @@ div[class*="col-"] {
 
 }
 
-
-
-
-@include screen-xs {
-  div[class*="col-"] {
+//full size
+@include xs {
+  div[class^="col-"] {
     width: 100%;
     float: none;
     padding-left: 0;

@@ -28,14 +28,14 @@ html, body {
   font-size: 16px;
 }
 
-@include screen-md {
+@include md {
   html, body {
 
     font-size: 14px !important;
   }
 }
 
-@include screen-sm {
+@include sm {
   html, body {
     font-size: 12px !important;
   }
