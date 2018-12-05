@@ -8,6 +8,7 @@
 @import "flex-grid";
 @import "fonts";
 @import "forms";
+@import "jquery-ui";
 
 //introduction
 .navigation {
@@ -26,7 +27,6 @@
 }
 
 //vertical-middle
-
 .test-vertical-middle {
   height: 300px;
   background-color: $dark-gray;
@@ -43,7 +43,6 @@
 }
 
 //inlineblock-justify
-
 .test-inline-block-justify {
   @include inline-block-justify;
   background-color: $gray;
@@ -157,7 +156,6 @@
 }
 
 //absolute
-
 .test-absolute-link {
   position: relative;
   height: 300px;
@@ -174,7 +172,6 @@
 }
 
 //prefix
-
 .test-prefix {
   width: 300px;
   height: 300px;
@@ -272,6 +269,8 @@
 
 }
 
+
+//test-no-number-list
 .test-no-number-list {
 
   background-color: $light-gray;
@@ -294,6 +293,8 @@
 
 }
 
+
+//test-number-list
 .test-number-list {
 
   background-color: $gray;
@@ -315,6 +316,8 @@
 
 }
 
+
+//test-sprite
 .test-sprite {
   margin: 0 auto;
   width: 200px;
@@ -372,6 +375,8 @@
   }
 }
 
+
+//test-triangle
 .test-triangle {
   background-color: $dark-gray;
   width: 300px;
@@ -434,6 +439,7 @@
 
 }
 
+//test-arrow
 .test-arrow {
 
   background-color: $gray;

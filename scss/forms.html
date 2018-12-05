@@ -2,14 +2,14 @@
 <html>
 <head lang="en">
 	<link rel="stylesheet" href="css/style.css"/>
+	<!--<link rel="stylesheet" href="css/jquery-ui.css">-->
+
 	<meta charset="UTF-8">
 	<title>FORMS</title>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
-	</script>
-	<script type="text/javascript" src="js/forms.js">
-	</script>
-	<script type="text/javascript" src="js/jquery.inputmask.bundle.min.js">
-	</script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.inputmask.bundle.min.js"></script>
+	<script type="text/javascript" src="js/forms.js"></script>
 </head>
 <body>
 <div class="test-forms">
@@ -19,18 +19,25 @@
 			<div class="form-field">
 				<input type="text" placeholder="Имя" id="firstname">
 				<label for="firstname">Введите</label>
+				<a class="cross hidden" href="#">x</a>
 			</div>
 			<div class="form-field">
-				<input type="password" placeholder="Пароль" id="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" >
+				<input type="password" placeholder="Пароль" id="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 				<label for="pass">Пароль</label>
+				<a class="eye hidden" href="#">o</a>
 			</div>
 		</fieldset>
-
 		<div class="form-field">
 			<input type="email" placeholder="Почта" id="email">
 		</div>
 		<div class="form-field">
 			<input type="text" data-inputmask="'mask': '99/99/9999'" placeholder="Дата">
+		</div>
+		<div class="form-field">
+			<input type="text" id="datepicker" placeholder="Календарь">
+		</div>
+		<div class="form-field">
+			<input id="spinner" name="spinner" value="5">
 		</div>
 		<div class="upload-group">
 			<div class="file-upload">
@@ -85,12 +92,179 @@
 			<input type="button" value="Кнопка">
 		</div>
 		<div class="form-field">
-			<input type="submit" name="submit" disabled  value="Отправить">
+			<input type="submit" name="submit" disabled value="Отправить">
 		</div>
 		<div class="form-field">
 			<input type="reset" value="Очистить форму">
 		</div>
+		<div class="form-field test-sortable">
+			<ul id="sortable">
+				<li>item1</li>
+				<li>item2</li>
+				<li>item3</li>
+				<li>item4</li>
+			</ul>
+		</div>
+		<div class="form-field">
+			<p id="tooltip">
+				<a href="#" title="That&apos;s what this widget is">Tooltips</a> can be attached to any element. When you hover
+																				 the element with your mouse, the title attribute is displayed in a little box next to the element, just like a native tooltip.
+			</p>
+		</div>
+		<div class="form-field">
+			<p CLASS="effects" id="effect">EFFECTS<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, quod?</p>
+			<a href="" class="btn run">run</a>
+		</div>
+		<div class="form-field">
+			<input id="autocomplete" title="type &quot;a&quot;">
+		</div>
+		<div class="form-field">
+			<select id="selectmenu">
+				<option>Slower</option>
+				<option>Slow</option>
+				<option selected="selected">Medium</option>
+				<option>Fast</option>
+				<option>Faster</option>
+			</select>
+		</div>
+		<div class="testing-checkbox-tags">
+			<label for="checkbox-1">2 Star</label>
+			<input type="checkbox" name="checkbox-1" id="checkbox-1">
+			<label for="checkbox-2">3 Star</label>
+			<input type="checkbox" name="checkbox-2" id="checkbox-2">
+			<label for="checkbox-3">4 Star</label>
+			<input type="checkbox" name="checkbox-3" id="checkbox-3">
+			<label for="checkbox-4">5 Star</label>
+			<input type="checkbox" name="checkbox-4" id="checkbox-4">
+		</div>
+		<div class="form-field">
+			<div id="progressbar">
+				<div class="progress-label">Загрузка...</div>
+			</div>
+		</div>
+		<div class="">
+			<p>
+				<label for="amount">Price range:</label>
+				<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+			</p>
+			<div id="slider-range"></div>
+		</div>
 	</form>
 </div>
+<script>
+    //JQUERY UI
+
+    $(function () {
+        $('#datepicker').datepicker({
+            dateFormat: "dd/mm/yy",
+            monthNames:
+                ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            firstDay: 1
+        });
+
+        $("#spinner").spinner();
+
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+    });
+
+
+    $(function () {
+        $("#tooltip").tooltip();
+    });
+    $(function () {
+        $(".run").on("click", function () {
+            $("#effect").effect('shake', 500, callback);
+
+            function callback() {
+                setTimeout(function () {
+                    $("#effect").effect('bounce');
+                }, 1000);
+            };
+            return false;
+        });
+
+
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+
+        $("#autocomplete").autocomplete({
+            source: availableTags
+        });
+
+
+        $("#selectmenu").selectmenu();
+
+
+        $(".testing-checkbox-tags").find('input').checkboxradio({
+            icon: false
+        });
+
+        $(function () {
+            var progressbar = $("#progressbar"),
+                progressLabel = $(".progress-label");
+
+            progressbar.progressbar({
+                value: false,
+                change: function () {
+                    progressLabel.text(progressbar.progressbar("value") + "%");
+                },
+                complete: function () {
+                    progressLabel.text("Завершена!");
+                }
+            });
+
+            function progress() {
+                var val = progressbar.progressbar("value") || 0;
+
+                progressbar.progressbar("value", val + 2);
+
+                if (val < 99) {
+                    setTimeout(progress, 80);
+                }
+            }
+
+            setTimeout(progress, 2000);
+        });
+    });
+
+
+    $(function () {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [75, 300],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
+    });
+</script>
 </body>
 </html>

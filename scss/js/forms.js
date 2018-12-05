@@ -1,6 +1,4 @@
-/**
- * Created by nosova.m on 01.10.2018.
- */
+
 
 $(document).ready(function () {
 
@@ -62,5 +60,39 @@ $(document).ready(function () {
         }
     });
 
-    $('input').inputmask();
+    $('.eye').on('click', function () {
+        if ($(this).hasClass('hidden')) {
+            $(this).siblings('input').attr('type', 'text');
+            $(this).removeClass('hidden');
+        } else {
+            $(this).siblings('input').attr('type', 'password');
+            $(this).addClass('hidden');
+        }
+        return false;
+    });
+
+    $('#firstname').on('keyup', function () {
+        if ($(this).val().trim()) {
+            $(this).siblings('a').removeClass('hidden');
+        }
+
+        else {
+            $(this).siblings('a').addClass('hidden');
+        }
+        return false;
+    });
+
+    $('.cross').on('click', function () {
+        $(this).siblings('input').val(" ");
+
+        if ($(this).siblings('input').val().trim()) {
+            $(this).removeClass('hidden');
+        }
+
+        else {
+            $(this).addClass('hidden');
+        }
+        return false;
+    });
 });
+
