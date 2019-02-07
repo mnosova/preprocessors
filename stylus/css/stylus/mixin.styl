@@ -1,0 +1,396 @@
+//=ie
+//*display: inline
+//*zoom: 1
+
+//clearfix
+clearfix() {
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+//absolute.
+absolute() {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+}
+
+//pseudo
+pseudo($top = 0, $left = 0, $width = initial, $height = initial, $display = initial) {
+  content: ' ';
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  display: $display;
+}
+
+//links
+links($link, $visit, $hover, $active) {
+  a {
+    color: $link;
+    &:visited {
+      color: $visit;
+    }
+    &:hover {
+      color: $hover;
+
+    }
+    &:active {
+      color: $active;
+
+    }
+  }
+
+}
+
+//vertical-middle
+vertical-middle() {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 0;
+  &:before {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+}
+
+vertical-middle-inner($fz) {
+
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  font-size: $fz;
+}
+
+//center-translate
+
+center-translate() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform(translate(-50%, -50%));
+
+}
+
+//center-margin
+center-margin($blockW, $blockH) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -($blockW/ 2);
+  margin-top: -($blockH/ 2);
+
+}
+
+//table-cell
+
+table-cell() {
+
+  width: 100%;
+  text-align: center;
+}
+
+table-cell-inner() {
+
+  display: table-cell;
+  vertical-align: top;
+}
+
+//inlineblock-justify-list
+
+inline-block-justify() {
+  text-align: justify;
+  line-height: 0;
+  font-size: 0;
+  text-justify: newspaper;
+  zoom: 1;
+  text-align-last: justify;
+  &:after {
+    width: 100%;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    content: '';
+    display: inline-block;
+  }
+}
+
+inline-block-justify-inner($fz, $lh) {
+  display: inline-block;
+  font-size: $fz;
+  line-height: $lh;
+
+}
+
+inlineblock() {
+  display: inline-block;
+  vertical-align: top;
+}
+
+bg-jpg($name) {
+  $name = $name + ".jpg"
+  background: url($url-img +  $name) no-repeat center;
+}
+
+bg-png($name) {
+  $name = $name + ".png"
+  background: url($url-img +  $name) no-repeat center;
+}
+
+//icons
+@mixin svg-icon($icon) {
+  background-image: url($url-icons+$icon+".svg")
+}
+
+before-svg-icon($padding, $icon) {
+  position: relative;
+  padding-left: $padding;
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    background-size: contain;
+    @include svg-icon($icon);
+  }
+
+}
+
+before-png-icon($padding, $icon) {
+  position: relative;
+  padding-left: $padding;
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+
+  }
+}
+
+//fluid block
+fluid-block($fixedW, $fixedH) {
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: (($fixedH* 100 /$fixedW) * 1%);
+    height: 0;
+
+  }
+}
+
+//fluid block
+fluid-bg($fixedW, $fixedH) {
+  position: relative;
+  background-size: contain;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: (($fixedH* 100 /$fixedW) * 1%);
+    height: 0;
+
+  }
+}
+
+//fluid-img
+
+fluid-img($fixedH) {
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: $fixedH px;
+    height: 0;
+
+  }
+}
+
+fluid-img-wrap($width, $imgheight) {
+  width: $width;
+  height: 100%;
+  bottom: 0;
+  center-margin($width, $imgheight);
+
+}
+
+//property table
+property-table($bgcolor) {
+  background-color: $bgcolor;
+
+}
+
+property-row() {
+  position: relative;
+  overflow: hidden;
+
+}
+
+property-line($bottom) {
+  pseudo(auto, 0, 100%, 1px, block);
+  z-index: 0;
+  bottom: $bottom;
+}
+
+property-name($bgcolor) {
+  position: relative;
+  z-index: 1;
+  left: 0;
+  background-color: $bgcolor;
+
+}
+
+property-val($bgcolor) {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  background-color: $bgcolor;
+
+}
+
+//number-list
+number-list($item) {
+  counter-reset: $item;
+
+}
+
+number-list-item($padding) {
+
+  position: relative;
+  padding-left: $padding;
+
+}
+
+number-list-num($item, $symbol) {
+  content: counter($item) $symbol;
+  counter-increment: $item;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+//sprite
+sprite($width, $height, $row, $col) {
+  width: $width;
+  height: $height;
+  display: inline-block;
+  background-position: ($width - ($width*$col)) ($height - ($height*$row));
+
+}
+
+//triangle
+triangle($width, $height, $bgcolor, $direction) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  content: '';
+
+  if ($direction == t) {
+    border-width: 0 ($width/ 2) px ($height) px ($width/ 2) px;
+    border-color: transparent transparent $bgcolor transparent;
+
+  }
+
+  if ($direction == r) {
+    border-width: ($height/ 2) px 0 ($height/ 2) px ($width) px;
+    border-color: transparent transparent transparent $bgcolor;
+  }
+
+  if ($direction == b) {
+    border-width: ($height) px ($width/ 2) px 0 ($width/ 2) px;
+    border-color: $bgcolor transparent transparent transparent;
+  }
+
+  if ($direction == l) {
+    border-width: ($height/ 2) px ($width) px ($height/ 2) px 0;
+    border-color: transparent $bgcolor transparent transparent;
+  }
+
+  if ($direction == tl) {
+    border-width: ($height) px ($width) px 0 0;
+    border-color: $bgcolor transparent transparent transparent;
+  }
+
+  if ($direction == tr) {
+    border-width: 0 ($width) px ($height) px 0;
+    border-color: transparent $bgcolor transparent transparent;
+  }
+
+  if ($direction == br) {
+    border-width: 0 0 ($height) px ($width) px;
+    border-color: transparent transparent $bgcolor transparent;
+  }
+
+  if ($direction == bl) {
+    border-width: ($height) px 0 0 ($width) px;
+    border-color: transparent transparent transparent $bgcolor;
+
+  }
+
+}
+
+//close icon
+close-icon($width, $height, $border, $bg) {
+  position: absolute;
+  &:before {
+    top: 0;
+    left: -1px;
+    triangle($width, $height, $border, l);
+
+  }
+
+  &:after {
+    top: 0;
+    left: 0;
+    triangle($width, $height, $bg, l);
+
+  }
+  span {
+    position: absolute;
+
+    &:before {
+      triangle($width, $height, $border, r);
+      top: 0;
+      right: -1px;
+
+    }
+
+    &:after {
+      triangle($width, $height, $bg, r);
+      top: 0;
+      right: 0;
+    }
+
+  }
+}
+
+icon-check($wide, $tiny, $bordercolor) {
+  content: "";
+  display: block;
+  position: absolute;
+  width: $wide;
+  height: $tiny;
+  border-radius: 1px;
+  border-left: 2px solid $bordercolor;
+  border-bottom: 2px solid $bordercolor;
+  transform: rotate(-45deg)
+
+}

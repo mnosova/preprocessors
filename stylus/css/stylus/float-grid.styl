@@ -1,0 +1,319 @@
+//float grid
+
+//====CUSTOMIZE=====//
+
+//grid
+$columns = 12;
+$gutter = 0.9375rem;
+$gutter-init = 0;
+
+//media only screen point
+$lg = 1200px;
+$md = 992px;
+$sm = 768px;
+$xs = 576px;
+
+//media mixin
+
+retina()
+  @media all and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 120dpi), (min-resolution: 1.2dppx)
+    {block}
+
+
+lg()
+  @media all and (max-width: $lg)
+    {block}
+
+
+sm()
+  @media all and (max-width: $sm)
+    {block}
+
+
+md()
+  @media all and (max-width: $md)
+    {block}
+
+
+xs()
+  @media all and (max-width: $xs)
+    {block}
+
+
+lg-to-md()
+  @media all and (max-width: $lg) and (min-width: $md)
+    {block}
+
+
+md-to-sm()
+  @media all and (max-width: $md) and (min-width: $sm)
+    {block}
+
+
+sm-to-xs()
+  @media all and (max-width: $sm) and (min-width: $xs)
+    {block}
+
+
+//container-max-width
+$c-lg = 1140;
+$c-md = 960;
+$c-sm = 720;
+$c-xs = 540;
+
+//container always container
+.container {
+  max-width: @c-lg px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+  clearfix();
+
+}
+
++lg() {
+  .container {
+    max-width: $c-md px;
+  }
+
+}
+
++md() {
+  .container {
+    max-width: $c-sm px;
+  }
+
+}
+
++sm() {
+  .container {
+    max-width: $c-xs px;
+  }
+}
+
++xs() {
+  .container {
+    max-width: 90%;
+  }
+}
+
+//float grid
+.row {
+  clearfix();
+}
+
+div[class^="col-"] {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-left: $gutter-init;
+  padding-right: $gutter-init;
+}
+
+.row-with-gutter {
+  margin-left: - $gutter;
+  margin-right: - $gutter;
+  clearfix();
+  div[class*="col-"] {
+    padding-left: $gutter;
+    padding-right: $gutter;
+
+  }
+}
+
+//media for columns
+for $i in (1..$columns) {
+//column
+  .col-{$i} {
+    width: ((100 / $columns) * $i) * 1%
+
+  }
+}
+
+for $i in (1..$columns) {
+//offset
+  .col-offset-{$i} {
+    margin-left: ((100 / $columns) * $i) * 1%
+
+  }
+
+}
+
+//order
+for $i in (1..$columns) {
+
+  .col-pull-{$i} {
+    right: ((100 / $columns) * $i) * 1%
+
+  }
+}
+
+for $i in (1..$columns) {
+
+  .col-push-{$i} {
+    left: ((100 / $columns) * $i) * 1%
+
+  }
+}
+
+//large screen
+
++lg() {
+//column
+  for $i in (1..$columns) {
+
+    .col-lg-{$i} {
+      width: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+}
+
++lg-to-md() {
+//offset
+  for $i in (1..$columns) {
+
+    .col-lg-offset-{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
+//order
++lg-to-md() {
+  for $i in (1..$columns) {
+
+    .col-lg-pull-{$i} {
+      right: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
++lg-to-md() {
+  for $i in (1..$columns) {
+
+    .col-lg-push-{$i} {
+      left: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+}
+
+//medium screen
++md() {
+//column
+  for $i in (1..$columns) {
+
+    .col-md-{$i} {
+      width: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
++md-to-sm() {
+//offset
+  for $i in (1..$columns) {
+
+    .col-md-offset-{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
+//order
++md-to-sm() {
+
+  for $i in (1..$columns) {
+
+    .col-md-pull-{$i} {
+      right: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+}
+
++md-to-sm() {
+
+  for $i in (1..$columns) {
+
+    .col-md-push-{$i} {
+      left: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+}
+
+//small screen
++sm() {
+//column
+  for $i in (1..$columns) {
+
+    .col-sm-{$i} {
+      width: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+
+}
+
+//offset
++sm-to-xs() {
+  for $i in (1..$columns) {
+
+    .col-sm-offset-{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+
+}
+
+//order
++sm-to-xs() {
+  for $i in (1..$columns) {
+
+    .col-sm-pull-{$i} {
+      right: ((100 / $columns) * $i) * 1%
+
+    }
+
+  }
+
+}
+
++sm-to-xs() {
+  for $i in (1..$columns) {
+
+    .col-sm-push-{$i} {
+      left: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+
+}
+
+//full size
++xs() {
+  div[class^="col-"] {
+    width: 100%;
+    float: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+

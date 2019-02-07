@@ -1,0 +1,75 @@
+//CONTAINER
+$width-container = 1203px;
+
+//FONT-SIZE
+$fz-lg = 16px;
+
+//COLORS
+$black = #000;
+$white = #fff;
+$light-gray = #f4f4f4;
+$gray = #ddd;
+$dark-gray = #ccc;
+$dark-red = #990000;
+
+//FONTS
+$lora-reg = 'loraregular';
+
+//URLS
+$url-font = "../../fonts/";
+$url-img = "../../img/";
+
+
+//font size settings
+
+
+html, body {
+  //line-height: 2.5em;
+  font-size: 16px;
+}
+
+md() {
+  html, body {
+
+    font-size: 14px !important;
+  }
+}
+
+sm() {
+  html, body {
+    font-size: 12px !important;
+  }
+}
+
+
+//LINKS
+a {
+  color: $black;
+  cursor: pointer;
+  &:visited {
+    //color: $gray;
+  }
+  &:hover {
+    color: $dark-gray;
+    text-decoration: none;
+
+  }
+  &:active {
+    color: $light-gray;
+
+  }
+}
+
+//TEXT
+
+p {
+
+  font-size: $fz-lg;
+  line-height: 1.4;
+  margin: 0 0 15px;
+}
+
+//usage class
+.center-text {
+  text-align: center;
+}

@@ -1,0 +1,373 @@
+//====CUSTOMIZE FLEX GRID=====//
+
+//grid
+$columns = 12;
+$gutter = 0.9375rem;
+$gutter-init = 0;
+
+//media only screen point
+$lg = 1200px;
+$md = 992px;
+$sm = 768px;
+$xs = 576px;
+
+//media mixin;
+retina()
+  @media all and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 120dpi), (min-resolution: 1.2dppx)
+    {block}
+
+
+
+lg()
+  @media all and (max-width: $lg)
+    {block}
+
+
+sm()
+  @media all and (max-width: $sm)
+    {block}
+
+
+md()
+  @media all and (max-width: $md)
+    {block}
+
+
+xs()
+  @media all and (max-width: $xs)
+    {block}
+
+
+lg-to-md()
+  @media all and (max-width: $lg) and (min-width: $md)
+    {block}
+
+
+md-to-sm()
+  @media all and (max-width: $md) and (min-width: $sm)
+    {block}
+
+
+sm-to-xs()
+  @media all and (max-width: $sm) and (min-width: $xs)
+    {block}
+
+
+//container-max-width
+$c-lg = 1140;
+$c-md = 960;
+$c-sm = 720;
+$c-xs = 540;
+
+//container always container
+.container {
+  max-width: $c-lg px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
++lg() {
+  .container {
+    max-width: $c-md px;
+  }
+
+}
+
++md() {
+  .container {
+    max-width: $c-sm px;
+  }
+
+}
+
++sm() {
+  .container {
+    max-width: $c-xs px;
+  }
+}
+
++xs() {
+  .container {
+    max-width: 90%;
+  }
+}
+
+//flex grid
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  &.ordered {
+    for $i in (1..$columns) {
+      div[class*="flex-"]:nth-child({$i}) {
+        order: $i;
+      }
+
+    }
+  }
+}
+
+//flex-item-justify
+.flex-row-around {
+  justify-content: space-around;
+
+}
+
+.flex-row-between {
+  justify-content: space-between;
+
+}
+
+.flex-row-center {
+  justify-content: center;
+  > div[class*=flex] {
+    margin-left: $gutter/ 2;
+    margin-right: $gutter/ 2;
+  }
+}
+
+//flex-item
+for $i in (1..$columns) {
+  .flex-col-{$i} {
+    $flexW = 100/$columns*$i*1%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 'calc(%s - %s)' % ($flexW $gutter);
+  }
+}
+
+flex($grow, $shrink, $basis) {
+  $flex-width = $basis - $gutter;
+  flex-grow: $grow;
+  flex-shrink: $shrink;
+  flex-basis: $flex-width;
+  {block};
+}
+
+.flex-col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+
+}
+
+flex-inner() {
+  display: flex;
+  flex-direction: column;
+  {block};
+}
+
+//offset
+for $i in (1..$columns) {
+  .flex-offset-{$i} {
+    margin-left: ((100 / $columns) * $i) * 1%
+
+  }
+
+}
+
+//order
+for $i in (1..$columns) {
+  .order-{$i} {
+    $order := $i - 1;
+    order: $order !important;
+
+  }
+}
+
+//lg screen
++lg() {
+//flex-item-justify
+  .flex-row-lg-around {
+    justify-content: space-around;
+
+  }
+  .flex-row-lg-between {
+    justify-content: space-between;
+
+  }
+  .flex-lg-center {
+    justify-content: center;
+    > div[class*=flex] {
+      margin-left:'calc(%s/2)' % $gutter;
+      margin-right:'calc(%s/2)' % $gutter;
+    }
+  }
+}
+
++lg() {
+//flex-item
+  for $i in (1..$columns) {
+    .flex-lg-{$i} {
+      $flexW = 100/$columns*$i*1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis:  'calc(%s - %s)' % ($flexW $gutter);
+
+    }
+  }
+}
+
++lg-to-md() {
+//offset
+  for $i in (1..$columns) {
+    .flex-lg-offset-{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+    }
+  }
+}
+
++lg-to-md() {
+//order
+  for $i in (1..$columns) {
+    .order-lg-{$i} {
+      $order = $i - 1;
+      order: $order !important;
+
+    }
+  }
+
+}
+
+//md screen
++md() {
+//flex-item-justify
+  .flex-row-md-around {
+    justify-content: space-around;
+
+  }
+  .flex-row-md-between {
+    justify-content: space-between;
+
+  }
+  .flex-md-center {
+    justify-content: center;
+    > div[class*=flex] {
+      margin-left:'calc(%s/2)' % $gutter;
+      margin-right:'calc(%s/2)' % $gutter;
+    }
+  }
+
+}
+
++md() {
+//flex-item
+  for $i in (1..$columns) {
+    .flex-md-{$i} {
+      $flexW = 100/$columns*$i*1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis:  'calc(%s - %s)' % ($flexW $gutter);
+    }
+  }
+}
+
++md-to-sm() {
+//offset
+  for $i in (1..$columns) {
+    .flex-md-offset-{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+
+}
+
++md-to-sm() {
+//order
+  for $i in (1..$columns) {
+    .order-md-{$i} {
+      $order = $i - 1;
+      order: $order !important;
+    }
+  }
+}
+
+//md screen
++sm() {
+//flex-item-justify
+  .flex-row-sm-around {
+    justify-content: space-around;
+
+  }
+  .flex-sm-between {
+    justify-content: space-between;
+
+  }
+
+  .flex-sm-center {
+    justify-content: center;
+    > div[class*=flex] {
+      margin-left:'calc(%s/2)' % $gutter;
+      margin-right:'calc(%s/2)' % $gutter;
+    }
+  }
+
+}
+
++sm() {
+//flex-item
+  for $i in (1..$columns) {
+    .flex-sm-{$i} {
+      $flexW = 100/$columns*$i*1%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis:  'calc(%s - %s)' % ($flexW $gutter);
+
+    }
+  }
+}
+
++sm-to-xs() {
+//offset
+  for $i in (1..$columns) {
+    .flex-sm-offset-{$i} {
+      margin-left: ((100 / $columns) * $i) * 1%
+
+    }
+  }
+
+}
+
++sm-to-xs() {
+//order
+  for $i in (1..$columns) {
+    .order-sm-{$i} {
+      $order = $i - 1;
+      order: $order !important;
+    }
+  }
+}
+
+//full size
++xs() {
+  .flex-row {
+
+    flex-direction: column;
+  }
+  .flex-row-xs-around {
+    justify-content: space-around;
+
+  }
+  .flex-xs-between {
+    justify-content: space-between;
+
+  }
+  .flex-xs-center {
+    justify-content: center;
+    > div[class*=flex] {
+      margin-left:'calc(%s/2)' % $gutter;
+      margin-right:'calc(%s/2)' % $gutter;
+    }
+  }
+
+}
+
+
+
