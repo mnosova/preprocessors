@@ -1,0 +1,227 @@
+$mobile: 425;
+$tablet: 768;
+$laptop: 1024;
+$notebook: 1280;
+$desktop: 1920;
+
+@mixin respond-to($arr) {
+  @each $media in $arr {
+    @if $media == mobile {
+      @media only screen and (max-width: #{$mobile}px) {
+        @content;
+      }
+    } @else if $media == tablet {
+      @media only screen and (min-width: #{$mobile + 1}px) and (max-width: #{$tablet}px) {
+        @content;
+      }
+    } @else if $media == laptop {
+      @media only screen and (min-width: #{$tablet + 1}px) and (max-width: #{$laptop}px) {
+        @content;
+      }
+    } @else if $media == notebook {
+      @media only screen and (min-width: #{$laptop + 1}px) and (max-width: #{$notebook}px) {
+        @content;
+      }
+    } @else if $media == desktop {
+      @media only screen and (min-width: #{$notebook + 1}px) and (max-width: #{$desktop}px) {
+        @content;
+      }
+    } @else if $media == landscape {
+      @media only screen and (orientation: landscape) {
+        @content;
+      }
+    } @else if $media == portrait {
+      @media only screen and (orientation: portrait) {
+        @content
+      }
+    }
+  }
+}
+
+@mixin mobileDevice {
+  @include respond-to(mobile) {
+    @content;
+  }
+  @media screen and (max-height: #{$mobile}px) {
+    @content;
+  }
+}
+
+@function vw($object, $width) {
+  $vw: ($width * 0.01) * 1px;
+  @return ($object / $vw) * 1vw;
+}
+
+
+@mixin calc($property, $expression, $imp:false) {
+  $str: "";
+  @if $imp {
+    $str: "!important";
+  }
+
+  #{$property}: -webkit-calc(#{$expression})#{$str};
+  #{$property}: -o-calc(#{$expression})#{$str};
+  #{$property}: calc(#{$expression})#{$str};
+}
+
+@mixin disableTap() {
+  -webkit-touch-callout:none;                /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust:none;             /* prevent webkit from resizing text to fit */
+  -webkit-tap-highlight-color:rgba(0,0,0,0); /* prevent tap highlight color / shadow */
+  -webkit-user-select:none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+@mixin transition ($attribute, $time, $type) {
+  -webkit-transition: $attribute $time $type;
+  -moz-transition: $attribute $time $type;
+  -ms-transition: $attribute $time $type;
+  -o-transition: $attribute $time $type;
+  transition: $attribute $time $type;
+}
+
+@mixin transitions ($arg) {
+  transition: #{$arg};
+  -o-transition: #{$arg};
+  -ms-transition: #{$arg};
+  -moz-transition: #{$arg};
+  -webkit-transition: #{$arg};
+}
+
+@mixin noselect () {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+@mixin animationInit ($name, $duration, $type, $delay, $count) {
+  $types: ("","-o-", "-ms-", "-moz-", "-webkit-");
+
+  @each $type_name in $types {
+    #{$type_name}animation-name:$name;
+    #{$type_name}animation-duration:$duration;
+    #{$type_name}animation-timing-function:$type;
+    #{$type_name}animation-delay:$delay;
+    #{$type_name}animation-iteration-count:$count;
+    #{$type_name}animation-direction:unset;
+    #{$type_name}animation-play-state:unset;
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin transform($type, $value) {
+  transform: $type+"("+$value+")";
+  -ms-transform: $type+"("+$value+")";
+  -moz-transform: $type+"("+$value+")";
+  -webkit-transform: $type+"("+$value+")";
+  -o-transform: $type+"("+$value+")";
+}
+
+@mixin transforms($types, $values) {
+  $types_: ("","-o-", "-ms-", "-moz-", "-webkit-");
+
+  @each $type_name in $types_ {
+    $str: ();
+    $a:0;
+
+    @for $a from 0 to length($types) {
+      $type: nth($types, 1+$a);
+      $value: nth($values, 1+$a);
+
+      $v: $type+"("+$value+")";
+      $str: append($str, unquote($v));
+    }
+
+    #{$type_name}transform: $str;
+  }
+}
+
+@mixin filter ($filter, $value) {
+  -webkit-filter: $filter+"("+$value+")";
+  -moz-filter: $filter+"("+$value+")";
+  -ms-filter: $filter+"("+$value+")";
+  -o-filter: $filter+"("+$value+")";
+  filter: $filter+"("+$value+")";
+}
+
+@mixin border-radius($a: false, $b: false, $c: false, $d: false, $top-left: 0, $top-right: 0, $bottom-right: 0, $bottom-left: 0, $top: false, $bottom: false, $right: false, $left: false, $radius: false) {
+  // Handle shorthand notation like CSS3 would
+  // You shouldn't explictly set these variables when calling the mixin
+  @if $d { $radius: $a $b $c $d; }
+  @else if $c { $radius: $a $b $c; }
+  @else if $b { $radius: $a $b; }
+  @else if $a { $radius: $a; }
+  @else {
+    // Target individual corners (or groups) instead of using CSS3 shorthand
+    @if $top { $top-left: $top; $top-right: $top; }
+    @if $bottom { $bottom-right: $bottom; $bottom-left: $bottom; }
+    @if $left { $top-left: $left; $bottom-left: $left; }
+    @if $right { $top-right: $right; $bottom-right: $right; }
+    // Set the radius
+    $radius: $top-left $top-right $bottom-right $bottom-left;
+  }
+  // Webkit, Mozilla and standard CSS3
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin gradient($direction, $first, $last) {
+  $angle1:0deg;
+  $angle2:180deg;
+  @if $direction=="top" {
+    $angle1: 0deg;
+    $angle2: 180deg;
+  }
+
+  @else if $direction=="bottom" {
+    $angle1: 180deg;
+    $angle2: 0deg;
+  }
+
+  @else if $direction=="left" {
+    $angle1: -90;
+    $angle2: 90;
+  }
+
+  @else if $direction=="right" {
+    $angle1: 180deg;
+    $angle2: 0deg;
+  }
+  @else {
+    $angle1: $direction + "deg";
+    $angle2: 180 - $direction + "deg";
+  }
+
+  background: $first;
+  background: -moz-linear-gradient(#{$angle1}, #{$first} 0%, #{$last} 100%);
+  background: -webkit-linear-gradient(#{$angle1}, #{$first} 0%,#{$last} 100%);
+  background: linear-gradient(#{$angle2}, #{$first} 0%,#{$last} 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$first}', endColorstr='#{$last}',GradientType=1 );
+}
+
+@mixin pixel-ratio() {
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 120dpi),
+  only screen and (min-resolution: 1.2dppx) {
+    @content;
+    background-size: contain;
+  }
+}
